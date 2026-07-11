@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>[Your Name] — Digital Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy:   #0F1E3D;
+    --cyan:   #00C9B1;
+    --orange: #F97316;
+    --white:  #F8F9FA;
+    --card:   #FFFFFF;
+    --dark:   #1A1A2E;
+    --muted:  #6B7280;
+    --border: #E5E7EB;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(15,30,61,0.96); backdrop-filter: blur(8px);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; height: 60px;
+  }
+  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--cyan); font-size: 1.1rem; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy); min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 100px 5% 60px; text-align: center;
+  }
+  .hero-inner { max-width: 720px; }
+  .hero-badge {
+    display: inline-block; background: rgba(0,201,177,0.12); border: 1px solid rgba(0,201,177,0.3);
+    color: var(--cyan); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; text-transform: uppercase;
+  }
+  .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 16px; }
+  .hero h1 span { color: var(--cyan); }
+  .hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; line-height: 1.7; max-width: 560px; margin: 0 auto 36px; }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--cyan); color: var(--navy); font-weight: 700; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,0.25); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+  .hero-stats { display: flex; gap: 36px; justify-content: center; margin-top: 60px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--cyan); }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 5%; }
+  .section-label { font-size: 0.75rem; font-weight: 600; color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+  .section-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.6; max-width: 560px; }
+  .section-head { margin-bottom: 48px; }
+
+  /* ── ABOUT ── */
+  #about { background: #fff; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; max-width: 960px; }
+  .about-text p { color: var(--muted); line-height: 1.75; font-size: 0.95rem; margin-bottom: 14px; }
+  .about-text strong { color: var(--dark); }
+  .about-tools h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 16px; color: var(--dark); }
+  .tool-group { margin-bottom: 20px; }
+  .tool-group-label { font-size: 0.72rem; font-weight: 600; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { background: var(--white); border: 1.5px solid var(--border); color: var(--dark); font-size: 0.78rem; font-weight: 500; padding: 4px 12px; border-radius: 100px; }
+  .pill.pro { border-color: var(--cyan); color: var(--navy); background: rgba(0,201,177,0.08); }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .project-card {
+    background: var(--card); border: 1.5px solid var(--border); border-radius: 14px;
+    overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.09); }
+  .card-img {
+    height: 180px; background: linear-gradient(135deg, #0F1E3D 0%, #1a3a6e 100%);
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-img-placeholder { text-align: center; color: rgba(255,255,255,0.35); font-size: 0.78rem; }
+  .card-img-placeholder .icon { font-size: 2.2rem; margin-bottom: 6px; opacity: 0.5; }
+  .card-img-placeholder p { font-size: 0.72rem; }
+  .card-type { position: absolute; top: 12px; left: 12px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; }
+  .type-ads    { background: rgba(249,115,22,0.18); color: #FB923C; border: 1px solid rgba(249,115,22,0.3); }
+  .type-seo    { background: rgba(34,197,94,0.15); color: #4ADE80; border: 1px solid rgba(34,197,94,0.25); }
+  .type-social { background: rgba(0,201,177,0.15); color: var(--cyan); border: 1px solid rgba(0,201,177,0.25); }
+  .type-content{ background: rgba(168,85,247,0.15); color: #C084FC; border: 1px solid rgba(168,85,247,0.25); }
+  .type-email  { background: rgba(59,130,246,0.15); color: #60A5FA; border: 1px solid rgba(59,130,246,0.25); }
+  .card-body { padding: 20px; }
+  .card-body h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+  .card-body p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .card-tag { font-size: 0.7rem; font-weight: 500; background: var(--white); border: 1px solid var(--border); color: var(--muted); padding: 3px 9px; border-radius: 6px; }
+  .card-footer { border-top: 1px solid var(--border); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .card-footer span { font-size: 0.75rem; color: var(--muted); }
+  .card-link { font-size: 0.78rem; font-weight: 600; color: var(--cyan); text-decoration: none; }
+  .card-link:hover { text-decoration: underline; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+  #skills .section-title { color: #fff; }
+  #skills .section-sub { color: rgba(255,255,255,0.5); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+  .skill-block { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 22px; }
+  .skill-block h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--cyan); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .skill-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .skill-name { font-size: 0.83rem; color: rgba(255,255,255,0.8); }
+  .skill-level { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 100px; }
+  .level-pro     { background: rgba(0,201,177,0.15); color: var(--cyan); border: 1px solid rgba(0,201,177,0.3); }
+  .level-growing { background: rgba(249,115,22,0.15); color: #FB923C; border: 1px solid rgba(249,115,22,0.3); }
+  .level-basic   { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.12); }
+
+  /* ── CONTACT ── */
+  #contact { background: #fff; text-align: center; }
+  .contact-inner { max-width: 520px; margin: 0 auto; }
+  .contact-inner p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .contact-chip { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 18px; text-decoration: none; color: var(--dark); font-size: 0.85rem; font-weight: 500; transition: border-color 0.2s; }
+  .contact-chip:hover { border-color: var(--cyan); color: var(--cyan); }
+  .contact-chip span { font-size: 1rem; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy); text-align: center; padding: 24px; font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+  footer strong { color: var(--cyan); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    nav { padding: 0 4%; }
+    .nav-links { gap: 16px; }
+    section { padding: 60px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">[YN]</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📍 Saket, Delhi &nbsp;·&nbsp; Open to Opportunities</div>
+    <h1>Hi, I'm <span>[Your Name]</span><br/>Digital Marketer</h1>
+    <p>Certified in digital marketing with hands-on course projects in Google Ads, Meta Ads, SEO, YouTube, Influencer Marketing, and more. Ready to turn skills into real results.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="mailto:[your.email@example.com]" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">7+</div><div class="stat-label">Projects Done</div></div>
+      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Months Training</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Tools Learned</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>B.A. graduate from Delhi</strong> who chose to pursue digital marketing as a career. Over the past 6 months I've completed an intensive certification at <strong>[Institute Name]</strong>, covering everything from paid advertising to SEO to social media strategy.</p>
+      <p>Every project here was a real assignment — researched, planned, and reviewed by my trainer. I take marketing seriously as a craft: understanding audiences, reading data, and crafting campaigns that actually work.</p>
+      <p>I'm looking for my first full-time role where I can <strong>learn fast, contribute early, and grow</strong> with a team that cares about measurable results.</p>
+    </div>
+    <div class="about-tools">
+      <h3>Tools & Platforms</h3>
+      <div class="tool-group">
+        <div class="tool-group-label">Advertising</div>
+        <div class="pills">
+          <span class="pill pro">Google Ads</span>
+          <span class="pill pro">Meta Ads</span>
+          <span class="pill">Google Analytics 4</span>
+          <span class="pill">Tag Manager</span>
+        </div>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-label">SEO & Content</div>
+        <div class="pills">
+          <span class="pill pro">On-Page SEO</span>
+          <span class="pill pro">Keyword Research</span>
+          <span class="pill">Google Search Console</span>
+          <span class="pill">Technical SEO Basics</span>
+        </div>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-label">Social & Email</div>
+        <div class="pills">
+          <span class="pill pro">Instagram</span>
+          <span class="pill pro">LinkedIn</span>
+          <span class="pill">YouTube Strategy</span>
+          <span class="pill">WhatsApp Marketing</span>
+          <span class="pill">Email Campaigns</span>
+        </div>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-label">Design & Web</div>
+        <div class="pills">
+          <span class="pill">Canva</span>
+          <span class="pill">Website Design Basics</span>
+          <span class="pill">Landing Pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-head">
+    <div class="section-label">My Work</div>
+    <h2 class="section-title">Course Projects & Assignments</h2>
+    <p class="section-sub">Each project below was assigned, executed, and reviewed by my trainer during my Digital Marketing certification program.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- 1. Social Media Strategy -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- REPLACE src below with your actual screenshot file, e.g. src="social-strategy.jpg" -->
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="Social Media Strategy"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">📱</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-social">Social Media</span>
+      </div>
+      <div class="card-body">
+        <h3>Brand Social Media Strategy Research</h3>
+        <p>Analysed how 5 leading brands use LinkedIn, Instagram, Facebook, and X. Identified content patterns, posting frequency, and engagement tactics used by high-performing accounts.</p>
+        <div class="card-tags">
+          <span class="card-tag">Brand Analysis</span>
+          <span class="card-tag">Content Strategy</span>
+          <span class="card-tag">Competitive Research</span>
+          <span class="card-tag">Instagram</span>
+          <span class="card-tag">LinkedIn</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Internship Project · Jan–Jul 2026</span>
+      </div>
+    </div>
+
+    <!-- 2. Google Ads -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="Google Ads Assignment"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">🎯</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-ads">Google Ads</span>
+      </div>
+      <div class="card-body">
+        <h3>Google Search & Display Campaign Plan</h3>
+        <p>Designed a mock Google Ads campaign for a local business — including keyword targeting, ad copy writing, bid strategy, and conversion tracking setup using Google Tag Manager.</p>
+        <div class="card-tags">
+          <span class="card-tag">Search Campaigns</span>
+          <span class="card-tag">Keyword Targeting</span>
+          <span class="card-tag">Ad Copywriting</span>
+          <span class="card-tag">GA4</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+    <!-- 3. Meta Ads -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="Meta Ads Assignment"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">📊</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-ads">Meta Ads</span>
+      </div>
+      <div class="card-body">
+        <h3>Meta Ads Campaign Strategy</h3>
+        <p>Built a complete Facebook & Instagram paid campaign plan — audience targeting, creative brief, funnel stages (Awareness → Consideration → Conversion), and budget allocation.</p>
+        <div class="card-tags">
+          <span class="card-tag">Facebook Ads</span>
+          <span class="card-tag">Instagram Ads</span>
+          <span class="card-tag">Audience Targeting</span>
+          <span class="card-tag">Ad Funnel</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+    <!-- 4. YouTube Marketing -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="YouTube Marketing"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">▶️</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-content">YouTube</span>
+      </div>
+      <div class="card-body">
+        <h3>YouTube Marketing Strategy</h3>
+        <p>Developed a YouTube channel growth strategy for a brand — covering video SEO, content calendar, thumbnail and title optimisation, and audience retention tactics.</p>
+        <div class="card-tags">
+          <span class="card-tag">YouTube SEO</span>
+          <span class="card-tag">Content Calendar</span>
+          <span class="card-tag">Video Strategy</span>
+          <span class="card-tag">Channel Growth</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+    <!-- 5. Influencer Marketing -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="Influencer Marketing"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">🤝</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-social">Influencer</span>
+      </div>
+      <div class="card-body">
+        <h3>Influencer Marketing Campaign Plan</h3>
+        <p>Created an influencer outreach plan for a D2C brand — identifying the right creator tiers (nano/micro/macro), campaign brief writing, KPI setting, and ROI estimation.</p>
+        <div class="card-tags">
+          <span class="card-tag">Influencer Outreach</span>
+          <span class="card-tag">Creator Brief</span>
+          <span class="card-tag">ROI Estimation</span>
+          <span class="card-tag">D2C Marketing</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+    <!-- 6. SEO -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="SEO Assignment"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">🔍</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-seo">SEO</span>
+      </div>
+      <div class="card-body">
+        <h3>SEO Audit & Keyword Strategy</h3>
+        <p>Performed an on-page SEO audit on a sample website — identified keyword opportunities, fixed meta tags, improved content structure, and planned a backlink strategy.</p>
+        <div class="card-tags">
+          <span class="card-tag">On-Page SEO</span>
+          <span class="card-tag">Keyword Research</span>
+          <span class="card-tag">Site Audit</span>
+          <span class="card-tag">Google Search Console</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+    <!-- 7. Email & WhatsApp -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="Email Marketing"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">📧</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-email">Email & WhatsApp</span>
+      </div>
+      <div class="card-body">
+        <h3>Email & WhatsApp Marketing Campaign</h3>
+        <p>Drafted a lead nurturing email sequence and a WhatsApp broadcast campaign — covering subject line writing, segmentation, open rate optimisation, and automation basics.</p>
+        <div class="card-tags">
+          <span class="card-tag">Email Copywriting</span>
+          <span class="card-tag">Lead Nurturing</span>
+          <span class="card-tag">WhatsApp Automation</span>
+          <span class="card-tag">Segmentation</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+    <!-- 8. Website Design -->
+    <div class="project-card">
+      <div class="card-img">
+        <!-- <img src="YOUR_SCREENSHOT.jpg" alt="Website Design"> -->
+        <div class="card-img-placeholder">
+          <div class="icon">🌐</div>
+          <p>Add your screenshot here</p>
+        </div>
+        <span class="card-type type-content">Web</span>
+      </div>
+      <div class="card-body">
+        <h3>Website Design & Landing Page Creation</h3>
+        <p>Designed and planned a conversion-focused landing page for a mock product launch — including layout structure, CTA placement, copy, and basic on-page SEO setup.</p>
+        <div class="card-tags">
+          <span class="card-tag">Landing Page</span>
+          <span class="card-tag">UX Basics</span>
+          <span class="card-tag">CTA Strategy</span>
+          <span class="card-tag">On-Page SEO</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span>Course Assignment · 2026</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">Skills Overview</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.5)">Honest proficiency levels based on course training and hands-on practice.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Paid Advertising</h4>
+      <div class="skill-item"><span class="skill-name">Google Ads</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Meta Ads (FB & IG)</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">YouTube Ads</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Retargeting</span><span class="skill-level level-growing">Growing</span></div>
+    </div>
+    <div class="skill-block">
+      <h4>SEO</h4>
+      <div class="skill-item"><span class="skill-name">On-Page SEO</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Keyword Research</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Technical SEO</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Off-Page / Link Building</span><span class="skill-level level-basic">Basic</span></div>
+    </div>
+    <div class="skill-block">
+      <h4>Analytics</h4>
+      <div class="skill-item"><span class="skill-name">Google Analytics 4</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Google Search Console</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Google Tag Manager</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Reporting & Dashboards</span><span class="skill-level level-growing">Growing</span></div>
+    </div>
+    <div class="skill-block">
+      <h4>Social Media</h4>
+      <div class="skill-item"><span class="skill-name">Instagram & Facebook</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">LinkedIn Marketing</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">YouTube Strategy</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Influencer Marketing</span><span class="skill-level level-growing">Growing</span></div>
+    </div>
+    <div class="skill-block">
+      <h4>Email & Messaging</h4>
+      <div class="skill-item"><span class="skill-name">Email Copywriting</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Lead Nurturing Flows</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">WhatsApp Marketing</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Marketing Automation</span><span class="skill-level level-basic">Basic</span></div>
+    </div>
+    <div class="skill-block">
+      <h4>Design & Tools</h4>
+      <div class="skill-item"><span class="skill-name">Canva</span><span class="skill-level level-pro">Proficient</span></div>
+      <div class="skill-item"><span class="skill-name">Landing Page Design</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Content Creation</span><span class="skill-level level-growing">Growing</span></div>
+      <div class="skill-item"><span class="skill-name">Google Workspace</span><span class="skill-level level-pro">Proficient</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center">Let's Connect</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p>I'm actively looking for my first full-time digital marketing role. If you think I'd be a good fit for your team, I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:[your.email@example.com]" class="contact-chip"><span>✉️</span> [your.email@example.com]</a>
+      <a href="tel:[your-phone]" class="contact-chip"><span>📞</span> [Your Phone Number]</a>
+      <a href="[LinkedIn URL]" target="_blank" class="contact-chip"><span>💼</span> LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by <strong>[Your Name]</strong> · Digital Marketing Portfolio · Delhi, India
+</footer>
+
+</body>
+</html>
